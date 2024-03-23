@@ -26,7 +26,7 @@ public function index(){
 
 public function show($id){
     $products = $this->product->find($id);
-    dd($products);
+   
 
     return response()->json($products) ;
 }
@@ -45,17 +45,13 @@ public function update(Request $request){
     return response()->json($product); // retorna o item atualizado em json
 }
 
-public function delee($id){
+public function delete($id){
     $product = $this->product->find($id);
     $product->delete();
     return response()->json($product) ;
 }
 
-public function delete(Request $request){
-    
-    $data =  $this->product::destroy($request->id);
-    return response()->json($data) ;
-}
+
 
 
 }
