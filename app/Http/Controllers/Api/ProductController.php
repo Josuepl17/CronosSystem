@@ -34,7 +34,7 @@ public function show($id){
 public function save(Request $request){
     $data = $request->all();
      $this->product->create($data);
-
+     return response()->json($data) ;
     
 }
 
