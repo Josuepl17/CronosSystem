@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ public function show($id){
     $products = $this->product->find($id);
    
 
-    return response()->json($products) ;
+    return new ProductResource($products) ;
 }
 
 public function save(Request $request){

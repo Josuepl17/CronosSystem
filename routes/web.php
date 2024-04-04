@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/itens', UserController::class);
 
 

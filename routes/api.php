@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,4 +37,4 @@ Route::put('/products' , [ProductController::class, 'update']); // leva tanto pe
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
 
-Route::apiResources('/users', 'UserController');
+Route::resource('/itens', UserController::class);
