@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\UserController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,11 +25,7 @@ Route::get('/teste', function(){
     echo "ola mundo";
 });
 
-
-
-
-
-Route::resource('/products', [ProductController::class, 'index']); // busca Todos
+Route::get('/products', [ProductController::class, 'index']); // busca Todos
 
 Route::post('/products', [ProductController::class, 'save']); // cria produto
 
