@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,6 @@ Route::get('/{id}', [ProductController::class, 'show']); // busca pelo id apenas
 Route::put('/products' , [ProductController::class, 'update']); // leva tanto pela url tantto pelo post  
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
+
+Route::resource('/users', [UserController::class, 'index']);
+
