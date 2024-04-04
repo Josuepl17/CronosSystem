@@ -26,7 +26,11 @@ Route::get('/teste', function(){
     echo "ola mundo";
 });
 
-Route::get('/products', [ProductController::class, 'index']); // busca Todos
+
+
+
+
+Route::resource('/products', [ProductController::class, 'index']); // busca Todos
 
 Route::post('/products', [ProductController::class, 'save']); // cria produto
 
@@ -36,5 +40,10 @@ Route::put('/products' , [ProductController::class, 'update']); // leva tanto pe
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
 
-Route::resource('/users', [UserController::class, 'index']);
+
+
+
+
+
+
 
