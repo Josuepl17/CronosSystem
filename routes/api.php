@@ -39,11 +39,3 @@ Route::get('/{id}', [ProductController::class, 'show']); // busca pelo id apenas
 Route::put('/products' , [ProductController::class, 'update']); // leva tanto pela url tantto pelo post  
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
-
-
-
-
-
-
-
-
