@@ -27,14 +27,14 @@ Route::get('/teste', function(){
     echo "ola mundo";
 });
 
-Route::get('/products', [ProductController::class, 'index']); // busca Todos
+Route::get('/products', [ProductController::class, 'index'])->middleware('auth.basic'); // busca Todos
 
-Route::post('/products', [ProductController::class, 'save']); // cria produto
+Route::post('/products', [ProductController::class, 'save'])->middleware('auth.basic'); // cria produto
 
-Route::get('/{id}', [ProductController::class, 'show']); // busca pelo id apenas 1
+Route::get('/{id}', [ProductController::class, 'show'])->middleware('auth.basic');; // busca pelo id apenas 1
 
 Route::put('/products' , [ProductController::class, 'update']); // leva tanto pela url tantto pelo post  
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
 
-Route::resource('/itens', UserController::class);
+//Route::resource('/itens', UserController::class);
