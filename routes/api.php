@@ -23,13 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/teste', function(){
-    echo "ola mundo";
-});
+
 
 Route::get('/products', [ProductController::class, 'index']); // busca Todos
 
-Route::post('/products', [ProductController::class, 'save'])->middleware('auth.basic'); // cria produto
+Route::post('/products', [ProductController::class, 'save']); // cria produto
 
 Route::get('/{id}', [ProductController::class, 'show']); // busca pelo id apenas 1
 
@@ -37,4 +35,3 @@ Route::put('/products' , [ProductController::class, 'update']); // leva tanto pe
 
 Route::delete('/{id}' , [ProductController::class, 'delete']); // leva tanto pela url tantto pelo post 
 
-//Route::resource('/itens', UserController::class);

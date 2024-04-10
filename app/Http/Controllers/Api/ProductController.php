@@ -21,10 +21,13 @@ class ProductController extends Controller
 
 public function index(){
 
-    $products = $this->product();
-   dd($products);
-    return new ProductResource($products);
+    $product = $this->product->all();
+    dd($product);
+    return ProductResource::make($product);
 }
+
+
+
 
 public function show($id){
     $products = $this->product->find($id);
