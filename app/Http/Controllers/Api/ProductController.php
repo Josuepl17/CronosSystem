@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class ProductController extends Controller
 public function index(){
 
     $product = $this->product->all();
-    dd($product);
-    return ProductResource::make($product);
+ 
+    return ProductCollection::make($product); // para varios registros
+
 }
 
 
@@ -32,7 +34,8 @@ public function index(){
 public function show($id){
     $products = $this->product->find($id);
    
-    return new ProductResource($products) ;
+    return ProductResource::make($products); // para apenas 1 registro
+    
 }
 
 public function save(Request $request){
