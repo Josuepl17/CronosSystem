@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,9 +21,16 @@ class ProductController extends Controller
     }
 
 
-public function index(){
+public function index(Request $request){
 
-    $product = $this->product->all();
+    $product = $this->product;
+    
+        if($request->has('fields')){
+        $fields = $request->get('fields');
+        dd($fields);
+        $product = $product->selectRaw($fields);
+    }
+  
  
     return ProductCollection::make($product); // para varios registros
 
