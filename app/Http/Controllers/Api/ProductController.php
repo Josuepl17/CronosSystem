@@ -21,25 +21,24 @@ class ProductController extends Controller
     }
 
 
-public function index(Request $request){
-
-    $product = $this->product;
-
-        if ($request->has('coditions')){
-            $expressions = explode(';', $request->get('coditions'));
-        
+    public function index(Request $request){
+        $product = $this->product;
+    
+        if ($request->has('conditions')){
+            $expressions = explode(';', $request->get('conditions'));
+          
             foreach ($expressions as $e){
                 $exp = explode('=', $e);
+              
                 $product = $product->where($exp[0], $exp[1]);
             }
-        
         }
     
         if($request->has('fields')){
         $fields = $request->get('fields');
         $fields = explode(',', $fields);
        
-        $product = $product->select($fields)->paginate(2); // metodo paginete substituiu o metodo get 
+        $product = $product->select($fields)->paginate(10); // metodo paginete substituiu o metodo get 
    
     }
   
