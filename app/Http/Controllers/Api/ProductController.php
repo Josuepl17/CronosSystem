@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\services\AbstractRepository\AbstractRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 
@@ -23,28 +24,24 @@ class ProductController extends Controller
 
     public function index(Request $request){
         $product = $this->product;
-    
-        if ($request->has('conditions')){
-            $expressions = explode(';', $request->get('conditions'));
-          
-            foreach ($expressions as $e){
-                $exp = explode(':', $e);
-              
-                $product = $product->where($exp[0], $exp[1], $exp[2]);
+        $productRespository = new AbstractRepository($product);
+
+        if ($request->has('coditions')){
+           $productRespository->selectCoditions($request->get('coditions'));
              
             }
-        }
+        
     
         if($request->has('fields')){
-        $fields = $request->get('fields');
-        $fields = explode(',', $fields);
-       
-        $product = $product->select($fields)->paginate(10); // metodo paginete substituiu o metodo get 
+        $productRespository->selectFilter($request->get('fields'));
+            
+        }
+        
    
-    }
+    
   
  
-    return ProductCollection::make($product); // para varios registros
+    return new ProductCollection($productRespository->getResult()->paginate(10));
 
 }
 
