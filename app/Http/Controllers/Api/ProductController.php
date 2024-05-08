@@ -25,7 +25,7 @@ class ProductController extends Controller
     }
 
 
-    public function index(Request $request){
+    public function index(ProductRequest $request){
         $product = $this->product;
         $productRespository = new AbstractRepository($product);
 
@@ -66,7 +66,7 @@ public function save(ProductRequest $request){
     
 }
 
-public function update(Request $request){
+public function update(ProductRequest $request){
     $data = $request->all(); // pega todos os dados da requisição 
     $product = $this->product->find($data['id']); // procura no banco pelos dado do ID recebido na variavel $data
     $product->update($data); // atualiza a model com os dados recebidos
